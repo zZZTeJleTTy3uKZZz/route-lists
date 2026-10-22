@@ -32,7 +32,7 @@
   "type": "remote",
   "tag": "via-proxy",
   "format": "source",
-  "url": "https://raw.githubusercontent.com/<owner>/route-lists/main/via-proxy.json",
+  "url": "https://raw.githubusercontent.com/zZZTeJleTTy3uKZZz/route-lists/main/via-proxy.json",
   "update_interval": "6h"
 }
 ```

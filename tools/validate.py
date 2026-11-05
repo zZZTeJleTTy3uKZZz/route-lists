@@ -107,7 +107,9 @@ def check_file(path):
 
 
 def main():
-    root = Path(__file__).resolve().parent.parent
+    # Каталог можно назвать аргументом: так проверяется черновик склейки до того,
+    # как он заменит рабочие файлы. Без аргумента проверяется корень репозитория.
+    root = Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else Path(__file__).resolve().parent.parent
     errors = 0
     for name in FILES:
         path = root / name

@@ -1,0 +1,44 @@
+name: refresh
+
+on:
+  schedule:
+    # Раз в сутки. Время выбрано не в круглый час, чтобы не попасть в пик
+    # нагрузки планировщика GitHub (там запуск может быть отложен или пропущен).
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+
+      # Склейка пишет черновик и сама отказывается, если источник пуст или объём
+      # провалился. Отказ здесь останавливает job: коммита не будет.
+      - name: merge lists from sources
+        run: python3 -I tools/build_lists.py
+
+      # Проверка формата обязательна и идёт отдельным шагом: упала — коммита нет.
+      - name: check list format
+        run: python3 -I tools/validate.py
+
+      - name: commit and push
+        run: |
+          set -eu
+          if git diff --quiet --exit-code -- via-proxy.json direct.json state/sources.json; then
+            echo "списки не изменились"
+            exit 0
+          fi
+          git config user.name "route-lists bot"
+          git config user.email "route-lists@users.noreply.github.com"
+          git add -- via-proxy.json direct.json state/sources.json
+          git commit -m "Склейка списков по расписанию"
+          git push

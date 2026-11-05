@@ -1,0 +1,36 @@
+{
+  "sources": [
+    {
+      "id": "amnezia-ip-lite",
+      "url": "https://raw.githubusercontent.com/lib4u/amnezia-tunneling-ru/main/amnezia-ip-lite.json",
+      "target": "direct",
+      "kind": "json-hostnames",
+      "min_entries": 200,
+      "license": "лицензия не указана"
+    },
+    {
+      "id": "itdog-outside",
+      "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Russia/outside-raw.lst",
+      "target": "direct",
+      "kind": "domain-lines",
+      "min_entries": 20,
+      "license": "лицензия не указана"
+    },
+    {
+      "id": "itdog-inside",
+      "url": "https://raw.githubusercontent.com/itdoginfo/allow-domains/main/Russia/inside-raw.lst",
+      "target": "via-proxy",
+      "kind": "domain-lines",
+      "min_entries": 200,
+      "license": "лицензия не указана"
+    },
+    {
+      "id": "refilter-domains",
+      "url": "https://raw.githubusercontent.com/1andrevich/Re-filter-lists/main/domains_all.lst",
+      "target": "via-proxy",
+      "kind": "domain-lines",
+      "min_entries": 5000,
+      "license": "MIT"
+    }
+  ]
+}

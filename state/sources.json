@@ -1,10 +1,10 @@
 {
   "outputs": {
-    "direct.json": 1319,
+    "direct.json": 1323,
     "via-proxy.json": 82801
   },
   "sources": {
-    "amnezia-ip-lite": 1280,
+    "amnezia-ip-lite": 1284,
     "itdog-inside": 1183,
     "itdog-outside": 39,
     "refilter-domains": 82146
